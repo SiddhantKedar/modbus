@@ -1,0 +1,79 @@
+<modbus_config>
+
+    <!-- ================= SMA ================= -->
+    <vendor name="sma">
+
+        <read_blocks>
+            <block start="30529" count="10" />
+            <block start="30769" count="8" />
+            <block start="30790" count="20" />
+        </read_blocks>
+
+        <read_registers>
+            <register name="daily_yield"  hi="30530" lo=""    scale="1"    dtype="U32" control="false"/>
+            <register name="total_yield"  hi="30536" lo=""    scale="1"    dtype="U32" control="false"/>
+            <register name="ipv"          hi="30770" lo=""    scale="0.1"  dtype="S32" control="false"/>
+            <register name="iac"          hi="30796" lo=""    scale="0.1"  dtype="U32" control="false"/>
+            <register name="vpv"          hi="30771" lo="30772" scale="0.01" dtype="S32" control="false"/>
+            <register name="active_power" hi="30775" lo="30776" scale="1"  dtype="S32" control="true"/>
+            <register name="fac"          hi="30804" lo=""    scale="0.01" dtype="U32" control="false"/>
+            <register name="qac"          hi="30805" lo="30806" scale="0.01" dtype="S32" control="true"/>
+        </read_registers>
+
+        <!-- Write registers — used by control logic only, not polled -->
+        <!-- c_pac: active power curtailment in %, scale=0.01 means raw = percent / 0.01 -->
+        <write_registers>
+            <register name="c_pac" addr="40023" scale="0.01" dtype="S16"/>
+        </write_registers>
+
+    </vendor>
+
+
+    <!-- ================= ION ================= -->
+    <vendor name="ion">
+
+        <read_blocks>
+            <block start="145" count="30" />
+            <block start="200" count="30" />
+        </read_blocks>
+
+        <read_registers>
+
+            <register name="I1"   hi="150" lo=""    scale="0.1"  dtype="U16" control="false"/>
+            <register name="I2"   hi="151" lo=""    scale="0.1"  dtype="U16" control="false"/>
+            <register name="I3"   hi="149" lo=""    scale="0.1"  dtype="U16" control="false"/>
+
+            <register name="Freq" hi="158" lo=""    scale="0.1"  dtype="U16" control="false"/>
+
+            <register name="U1"   hi="165" lo="166" scale="1"    dtype="U32" control="false"/>
+            <register name="U2"   hi="167" lo="168" scale="1"    dtype="U32" control="false"/>
+            <register name="U3"   hi="169" lo="170" scale="1"    dtype="U32" control="false"/>
+
+            <register name="Ptot" hi="203" lo="204" scale="1000" dtype="S32" control="true"/>
+            <register name="Qtot" hi="213" lo="214" scale="1000" dtype="S32" control="false"/>
+            <register name="Stot" hi="223" lo="224" scale="1000" dtype="S32" control="false"/>
+
+        </read_registers>
+
+    </vendor>
+
+
+    <!-- ================= SELECTOR ================= -->
+    <vendor name="selector">
+
+        <read_blocks>
+            <block start="101" count="80" />
+        </read_blocks>
+
+        <read_registers>
+
+            <register name="V1"   hi="103" lo="104" scale="1" dtype="F32" control="true"/>
+            <register name="V2"   hi="109" lo="110" scale="1" dtype="F32" control="false"/>
+            <register name="V3"   hi="111" lo="112" scale="1" dtype="F32" control="false"/>
+            <register name="Freq" hi="171" lo="172" scale="1" dtype="F32" control="false"/>
+
+        </read_registers>
+
+    </vendor>
+
+</modbus_config>
