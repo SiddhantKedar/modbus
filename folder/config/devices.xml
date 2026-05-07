@@ -1,0 +1,60 @@
+<vendors>
+
+    <!-- ================= SMA ================= -->
+    <vendor name="sma">
+        <devices>
+
+            <!-- Read device — polls inverter registers, device_id=3 -->
+            <device name="inv1" role="read">
+                <protocol>TCP</protocol>
+                <host>192.168.178.51</host>
+                <port>502</port>
+                <device_id>3</device_id>
+            </device>
+
+            <!-- Write device — sends control commands only, device_id=2 -->
+            <device name="inv1_write" role="write">
+                <protocol>TCP</protocol>
+                <host>192.168.178.51</host>
+                <port>502</port>
+                <device_id>2</device_id>
+            </device>
+
+        </devices>
+    </vendor>
+
+    <!-- ================= ION ================= -->
+    <vendor name="ion">
+        <devices>
+
+            <device name="meter1" role="read">
+                <protocol>TCP</protocol>
+                <host>192.168.178.52</host>
+                <port>502</port>
+                <device_id>1</device_id>
+            </device>
+
+        </devices>
+    </vendor>
+
+    <!-- ================= SELECTOR ================= -->
+    <vendor name="selector">
+    <!-- RTU BUS -->
+        <bus name="rs485_1">
+            <protocol>RTU</protocol>
+            <port>/dev/ttyUSB0</port>
+            <baudrate>38400</baudrate>
+            <parity>N</parity>
+            <stopbits>1</stopbits>
+            <devices>
+
+                <device name="meter2" role="read">
+                    <device_id>3</device_id>
+                </device>
+
+            </devices>
+        </bus>
+
+    </vendor>
+
+</vendors>
