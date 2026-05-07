@@ -1,0 +1,10 @@
+{
+    "controlling_enabled" : false,
+    "setpoint_kw":          700.0,
+    "total_capacity_kw":    880.0,
+    "kp":                   0.6,
+    "ki":                   0.03,
+    "deadband_kw":          1.0,
+    "ramp_up_kw_per_sec":   50.0,
+    "ramp_down_kw_per_sec": 10.0
+}
